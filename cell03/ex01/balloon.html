@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explode This Balloon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f5;
+            font-family: Arial, sans-serif;
+        }
+
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        #balloon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .explode {
+            animation: explode 0.5s ease-out;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="balloon"></div>
+
+    <script>
+        let balloon = document.getElementById('balloon');
+        let size = 200;
+        let colors = ['red', 'green', 'blue'];
+        let colorIndex = 0;
+
+        // Function to update the balloon's size and color
+        function updateBalloon() {
+            balloon.style.width = size + 'px';
+            balloon.style.height = size + 'px';
+            balloon.style.backgroundColor = colors[colorIndex];
+        }
+
+        // On click event: Grow the balloon and change its color
+        balloon.onclick = function () {
+
+            if (size+10 < 420) {
+                size += 10;
+                colorIndex = (colorIndex + 1) % colors.length;
+            } else {
+                balloon.classList.add('explode');
+                setTimeout(() => {
+                    balloon.classList.remove('explode');
+                    size = 200;
+                    colorIndex = 0;
+                    updateBalloon();
+                }, 500);
+            }
+            updateBalloon();
+        }
+
+        // On mouseleave event: Shrink the balloon and reverse color order
+        balloon.onmouseleave = function () {
+            if (size > 200) {
+                size -= 5;
+                colorIndex = (colorIndex - 1 + colors.length) % colors.length; // Reverse color cycle
+                updateBalloon();
+            }
+        }
+
+        updateBalloon();
+    </script>
+</body>
+
+</html>

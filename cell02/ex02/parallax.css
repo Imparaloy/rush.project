@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.parallax {
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+}
+    .parallax p{
+        color: black;
+        font-size: 20px;
+    }
+.parallax-1 {
+    background-image: url('https://media.istockphoto.com/id/1129841982/th/%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%96%E0%B9%88%E0%B8%B2%E0%B8%A2/%E0%B9%82%E0%B8%8B%E0%B8%94%E0%B8%B2%E0%B8%AA%E0%B8%B5%E0%B9%81%E0%B8%94%E0%B8%87%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%B5%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%9A%E0%B8%99%E0%B8%99%E0%B9%89%E0%B9%8D%E0%B8%B2%E0%B9%81%E0%B8%82%E0%B9%87%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%AB%E0%B8%A2%E0%B8%94%E0%B8%84%E0%B8%A7%E0%B8%9A%E0%B9%81%E0%B8%99%E0%B9%88%E0%B8%99.jpg?s=612x612&w=0&k=20&c=DmCjGjH3dzUEcFSJOgAl5ZIjYwV8RWdNIZIORrKYAKQ=');
+}
+.parallax-2 {
+    background-image: url('https://www.flexconnect.net/wp-content/uploads/2022/04/KCH09.jpg');
+}
+.content {
+    padding: 100px;
+    text-align: center;
+    background-color: #333;
+    color: white;
+}
+
+h1 {
+    font-size: 50px;
+}

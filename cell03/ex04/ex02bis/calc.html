@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Basic Calculator</title>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+           background-color: #f0f0f5;
+       }
+       .calculator {
+           background-color: #fff;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+           text-align: center;
+       }
+       input, select {
+           margin: 10px 0;
+           padding: 10px;
+           width: 100%;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+       }
+       input[type="submit"] {
+           background-color: #007bff;
+           color: white;
+           cursor: pointer;
+       }
+       input[type="submit"]:hover {
+           background-color: #0056b3;
+       }
+   </style>
+</head>
+<body>
+   <div class="calculator">
+       <input type="text" id="leftInput" placeholder="Left operand (>= 0)">
+       <select id="operator">
+           <option value="+">+</option>
+           <option value="-">-</option>
+           <option value="*">*</option>
+           <option value="/">/</option>
+           <option value="%">%</option>
+       </select>
+       <input type="text" id="rightInput" placeholder="Right operand (>= 0)">
+       <input type="submit" value="Try me!" id="calculate">
+   </div>
+
+   <script>
+       $(document).ready(function() {
+           function isPositiveInteger(value) {
+            return Number.isInteger(+value) && +value >= 0; 
+        }        
+
+           $('#calculate').click(function() {
+               const left = $('#leftInput').val();
+               const right = $('#rightInput').val();
+               const operator = $('#operator').val();
+
+               if (!isPositiveInteger(left) || !isPositiveInteger(right)) {
+                   alert('Error :(');
+                   console.log('Error :(');
+                   return;
+               }
+
+               const numLeft = parseInt(left);
+               const numRight = parseInt(right);
+
+               if ((operator === '/' || operator === '%') && numRight === 0) {
+                   alert("It's over 9000!");
+                   console.log("It's over 9000!");
+                   return;
+               }
+
+               let result;
+               switch (operator) {
+                   case '+':
+                       result = numLeft + numRight;
+                       break;
+                   case '-':
+                       result = numLeft - numRight;
+                       break;
+                   case '*':
+                       result = numLeft * numRight;
+                       break;
+                   case '/':
+                       result = numLeft / numRight;
+                       break;
+                   case '%':
+                       result = numLeft % numRight;
+                       break;
+                   default:
+                       result = 'Invalid operator';
+               }
+
+               alert(`Result: ${result}`);
+               console.log(`Result: ${result}`);
+           });
+
+           setInterval(() => {
+               alert('Please, use me...');
+           }, 30000);
+       });
+   </script>
+</body>
+</html>

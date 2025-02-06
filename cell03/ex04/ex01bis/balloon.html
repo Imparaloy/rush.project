@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Explode This Balloon</title>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+   <style>
+       body {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+           background-color: #f0f0f5;
+           font-family: Arial, sans-serif;
+       }
+
+       #balloon {
+           width: 200px;
+           height: 200px;
+           background-color: red;
+           border-radius: 50%;
+           transition: all 0.3s ease;
+           cursor: pointer;
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+           position: relative;
+       }
+
+       #balloon:hover {
+           transform: scale(1.05);
+           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+       }
+
+       .explode {
+           animation: explode 0.5s ease-out;
+       }
+
+       @keyframes explode {
+           0% {
+               transform: scale(1);
+               opacity: 1;
+           }
+           100% {
+               transform: scale(2);
+               opacity: 0;
+           }
+       }
+   </style>
+</head>
+<body>
+   <div id="balloon"></div>
+
+   <script>
+       $(document).ready(function() {
+           let size = 200;
+           let colors = ['red', 'green', 'blue'];
+           let colorIndex = 0;
+
+           function updateBalloon() {
+               $('#balloon').css({
+                   'width': size + 'px',
+                   'height': size + 'px',
+                   'background-color': colors[colorIndex]
+               });
+           }
+
+           $('#balloon').click(function() {
+               if (size+10 < 420) {
+                   size += 10;
+                   colorIndex = (colorIndex + 1) % colors.length;
+               } else {
+                   $(this).addClass('explode');
+                   setTimeout(() => {
+                       $(this).removeClass('explode');
+                       size = 200;
+                       colorIndex = 0;
+                       updateBalloon();
+                   }, 500);
+               }
+               updateBalloon();
+           });
+
+           $('#balloon').mouseleave(function() {
+               if (size > 200) {
+                   size -= 5;
+                   colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+                   updateBalloon();
+               }
+           });
+
+           // Initial state
+           updateBalloon();
+       });
+   </script>
+</body>
+</html>
